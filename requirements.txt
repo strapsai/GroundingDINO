@@ -1,10 +1,12 @@
-torch
-torchvision
+#torch
+#torchvision
 transformers
 addict
 yapf
 timm
 numpy
-opencv-python
+#opencv-python
 supervision>=0.22.0
 pycocotools
+
+#commented deps are already present in the robot env (docker image)
