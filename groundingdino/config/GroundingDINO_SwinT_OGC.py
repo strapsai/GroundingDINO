@@ -31,6 +31,16 @@ dn_bbox_coef = 1.0
 embed_init_tgt = True
 dn_labelbook_size = 2000
 max_text_len = 256
+
+import os
+
+if os.environ.get("AIRLAB_PATH"):
+    text_encoder_type = os.path.join(os.environ.get("AIRLAB_PATH"), "physiology_ws/hemobox_supercharged/models/bert-base-uncased")
+    print('BERT path picked up correctly.')
+else:
+    text_encoder_type = "bert-base-uncased"
+    print('WARNING - BERT path setting failed.')
+
 text_encoder_type = "bert-base-uncased"
 use_text_enhancer = True
 use_fusion_layer = True

@@ -21,14 +21,16 @@ def get_tokenlizer(text_encoder_type):
 
 
 def get_pretrained_language_model(text_encoder_type, model_path=None):
-    if text_encoder_type == "bert-base-uncased" or (os.path.isdir(text_encoder_type) and os.path.exists(text_encoder_type)):
+    print(f'Text_encoder_type in get_pretrained_language_model is {text_encoder_type}')
+    if (os.path.isdir(text_encoder_type) and os.path.exists(text_encoder_type)):
+        print(f'Loading model from local path: {text_encoder_type}')
+        return BertModel.from_pretrained(text_encoder_type)
+    elif text_encoder_type == "bert-base-uncased":
         # return BertModel.from_pretrained(text_encoder_type)
-        bert_model_path = os.path.join(os.getcwd(), 'src/models/bert-base-uncased')
-        tokenizer = BertTokenizer.from_pretrained(bert_model_path, do_lower_case=True, local_files_only=True)
+        tokenizer = BertTokenizer.from_pretrained(text_encoder_type, do_lower_case=True, local_files_only=True)
         # model = BertModel.from_pretrained(bert_model_path)
-        print(f'Loading model from {bert_model_path}')
-        return BertModel.from_pretrained(bert_model_path)
-
+        print(f'WARNING: Loading model from HuggingFace: {text_encoder_type}')
+        return BertModel.from_pretrained(text_encoder_type)
     if text_encoder_type == "roberta-base":
         return RobertaModel.from_pretrained(text_encoder_type)
 

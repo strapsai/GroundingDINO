@@ -71,7 +71,7 @@ class GroundingDINO(nn.Module):
         dn_box_noise_scale=0.4,
         dn_label_noise_ratio=0.5,
         dn_labelbook_size=100,
-        text_encoder_type="bert-base-uncased",
+        text_encoder_type=None,
         sub_sentence_present=True,
         max_text_len=256,
     ):
