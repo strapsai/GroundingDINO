@@ -22,7 +22,6 @@ def get_tokenlizer(text_encoder_type, model_path=None):
     else:
         # bert_model_path = text_encoder_type #default to downloading
         print(f'BERT Path not valid!!')
-
     tokenizer = AutoTokenizer.from_pretrained(bert_model_path)
     return tokenizer
 
