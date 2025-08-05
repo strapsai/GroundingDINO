@@ -16,7 +16,9 @@ def get_tokenlizer(text_encoder_type):
             )
     print("final text_encoder_type: {}".format(text_encoder_type))
 
-    tokenizer = AutoTokenizer.from_pretrained(text_encoder_type)
+    bert_model_path = os.path.join(os.getcwd(), 'src/hemobox-supercharged/models/bert-base-uncased')
+    print(f'Loading tokenizer from {bert_model_path}')
+    tokenizer = AutoTokenizer.from_pretrained(bert_model_path)
     return tokenizer
 
 
