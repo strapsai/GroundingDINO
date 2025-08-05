@@ -72,6 +72,7 @@ class GroundingDINO(nn.Module):
         dn_label_noise_ratio=0.5,
         dn_labelbook_size=100,
         text_encoder_type="bert-base-uncased",
+        bert_model_path = None,
         sub_sentence_present=True,
         max_text_len=256,
     ):
@@ -404,7 +405,7 @@ def build_groundingdino(args):
         dn_label_noise_ratio=args.dn_label_noise_ratio,
         dn_labelbook_size=dn_labelbook_size,
         text_encoder_type=args.text_encoder_type,
-        bert_model_path = getattr(args, "bert_model_path", None)
+        bert_model_path = args.bert_model_path,
         sub_sentence_present=sub_sentence_present,
         max_text_len=args.max_text_len,
     )

@@ -17,29 +17,28 @@ def get_tokenlizer(text_encoder_type, model_path=None):
     print("final text_encoder_type: {}".format(text_encoder_type))
 
     if model_path:
-            bert_model_path = model_path
-            print(f'Loading model from {bert_model_path}')
-        else:
-            bert_model_path = text_encoder_type #default to downloading
-            print(f'Path not valid: Attempting download!!')
+        bert_model_path = model_path
+        print(f'Loading model from {bert_model_path}')
+    else:
+        # bert_model_path = text_encoder_type #default to downloading
+        print(f'BERT Path not valid!!')
 
     tokenizer = AutoTokenizer.from_pretrained(bert_model_path)
     return tokenizer
 
 
 def get_pretrained_language_model(text_encoder_type, model_path=None):
-    if text_encoder_type == "bert-base-uncased" or (os.path.isdir(text_encoder_type) and os.path.exists(text_encoder_type)):
+    if text_encoder_type == "bert-base-uncased":
         # return BertModel.from_pretrained(text_encoder_type)
         if model_path:
             bert_model_path = model_path
             print(f'Loading model from {bert_model_path}')
         else:
-            bert_model_path = text_encoder_type #default to downloading
-            print(f'Path not valid: Attempting download!!')
+            # bert_model_path = text_encoder_type #default to downloading
+            print(f'BERT Path not valid!!')
         
         tokenizer = BertTokenizer.from_pretrained(bert_model_path, do_lower_case=True, local_files_only=True)
         model = BertModel.from_pretrained(bert_model_path)
-
         return model
 
     if text_encoder_type == "roberta-base":
